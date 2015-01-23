@@ -5,7 +5,7 @@ OAuth2::Response.register_parser(:concur_xml, ['text/xml', 'application/rss+xml'
   parsed = MultiXml.parse(body).deep_transform_keys{ |key| key.to_s.downcase }['access_token']
   {
     'access_token' => parsed['token'],
-    'expires_at' => parsed['expiration_date'].to_datetime,
+    'expires_at' => parsed['expiration_date'],
     'refresh_token' => parsed['refresh_token'],
     'instance_url' => parsed['instance_url'],
   }
